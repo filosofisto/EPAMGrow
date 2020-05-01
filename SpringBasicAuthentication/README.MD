@@ -5,7 +5,7 @@ using Spring MVC framework and BASIC AUTHENTICATION.
 
 After clone, you can execute unit tests that cover:
 
-- Access http://localhost:8080/ or http://localhost:8080/home with
+- Access http://localhost:8080/ or http://localhost:8080/authenticated with
 a valid user or without an user at all. This address doesn't need an 
 authenticated user
 
