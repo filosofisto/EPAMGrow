@@ -24,25 +24,25 @@ class SecurityTest {
     private MockMvc mockMvc;
 
     @Test
-    void test_Request_NoNeedAuthentication_WithoutUser_Status200() throws Exception {
+    void unprotectedRequestWithoutUserShouldReceiveStatus200() throws Exception {
         this.mockMvc.perform(get(URL_NO_AUTH))
                 .andExpect(status().isOk());
     }
 
     @Test
-    void test_Request_NoNeedAuthentication_WithUser_Status200() throws Exception {
+    void unprotectedRequestWithUserShouldReceiveStatus200() throws Exception {
         this.mockMvc.perform(get(URL_NO_AUTH))
                 .andExpect(status().isOk());
     }
 
     @Test
-    void test_Request_NeedAuthentication_WithoutUser_Status401() throws Exception {
+    void protectedRequestWithoutUserShouldReceiveStatus401() throws Exception {
         this.mockMvc.perform(get(URL_AUTH))
                 .andExpect(status().isUnauthorized());
     }
 
     @Test
-    void test_Request_NeedAuthentication_WithUser_Status200() throws Exception {
+    void protectedRequestWithUserShouldReceiveStatus200() throws Exception {
         mockMvc.perform(
                 get(URL_AUTH)
                 .with(httpBasic(USERNAME, CORRECT_PASSWORD))
@@ -50,7 +50,7 @@ class SecurityTest {
     }
 
     @Test
-    void test_Request_NeedAuthentication_WithWrongUser_Status401() throws Exception {
+    void protectedRequestWithWrongUserShouldReceiveStatus401() throws Exception {
         mockMvc.perform(
                 get(URL_AUTH)
                 .with(httpBasic(USERNAME, INCORRECT_PASSWORD))
